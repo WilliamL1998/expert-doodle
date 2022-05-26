@@ -11,7 +11,7 @@ var choiceB = document.getElementById("choiceB")
 var choiceC = document.getElementById("choiceC")
 var choiceD = document.getElementById("choiceD")
 
-var secondsLeft = 60
+var secondsLeft = 600
 var i = 0
 var score = 0
 var correctAnswer
@@ -126,7 +126,7 @@ var questionList = [
 
 
 
-
+// starts the game by hiding and showing HTML elements and triggering functions
 startButton.addEventListener("click", startGame)
 function startGame(){
     timer.setAttribute("class", "timer")
@@ -140,6 +140,7 @@ function startGame(){
     showQuestion()
 }
 
+// simple timer
 function startTimer(){
     timerInterval = setInterval(function() {
     timer.textContent = "Timer: " + secondsLeft
@@ -151,6 +152,7 @@ function startTimer(){
   }, 1000);
 }
 
+// ends the game by hiding and showing HTML elements and prompting the user to see if they want to store their score
 function endGame(){
     timer.setAttribute("class", "timer hidden")
     question.setAttribute("class", "question hidden")
@@ -159,7 +161,7 @@ function endGame(){
     end.setAttribute("class", "")
     startButton.setAttribute("class", "")
     clearInterval(timerInterval)
-    secondsLeft = 60
+    secondsLeft = 600
     i = 0
     storeIt = window.confirm("Game Over! Your score is: " + score + "\nWould you like to store to your highscore?")
     if (storeIt){
@@ -169,6 +171,7 @@ function endGame(){
     }
 }
 
+// sorts through the question list array and showing the questions and choices
 function showQuestion(){
     question.textContent = questionList[i].question
     choiceA.textContent = "a. " + questionList[i].answers.a
@@ -178,6 +181,7 @@ function showQuestion(){
     correctAnswer = questionList[i].correctAnswer
 }
 
+// functions for the each choice clicked simply adds or remove score/time and triggers next question
 choiceA.addEventListener("click", selectedA)
 choiceB.addEventListener("click", selectedB)
 choiceC.addEventListener("click", selectedC)
@@ -223,6 +227,7 @@ function selectedD(){
     nextQuestion()
 }
 
+// flips through the array to the next set of question and choices. checks if user is all done and will end game if so
 function nextQuestion(){
     i = i + 1
     if (i === questionList.length){
@@ -232,6 +237,7 @@ function nextQuestion(){
     }
 }
 
+// stores the user's initials and score into local storage
 function storeHighscore(){
     initials = window.prompt("What are your initials?")
     newScore = {initials, score}
@@ -240,3 +246,5 @@ function storeHighscore(){
     highscoresStorage.splice(numHighscores)
     localStorage.setItem("Score", JSON.stringify(highscoresStorage))
 }
+
+// Unable to figure out how to retrieve local storage highscore with JSON.parse
