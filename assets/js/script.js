@@ -23,25 +23,105 @@ var highscoresStorage = []
 
 var questionList = [
     {
-        question: "What is 1+1?",
+        question: "What tag defines the body of the HTML document, and usually includes all the contents such as the text, hyperlinks, images, tables, lists, and more?",
         answers: {
-            a: "2",
-            b: "4",
-            c: "6",
-            d: "8"
+            a: "<br></br>",
+            b: "<title></title>",
+            c: "<head></head>",
+            d: "<body></body>"
+        },
+        correctAnswer: "d"
+    },
+    {
+        question: "In JavaScript, what element is used to store multiple values in a single variable?",
+        answers: {
+            a: "Variables",
+            b: "Arrays",
+            c: "Functions",
+            d: "Strings"
+        },
+        correctAnswer: "b"
+    },
+    {
+        question: "In JavaScript, what is a block of code called that is used to perform a specific task?",
+        answers: {
+            a: "Function",
+            b: "Declaration",
+            c: "Variable",
+            d: "String"
         },
         correctAnswer: "a"
     },
     {
-        question: "What is 2+2?",
+        question: "What is the format called that is used for storing and transporting data?",
         answers: {
-            a: "2",
-            b: "4",
-            c: "6",
-            d: "8"
+            a: "JSON",
+            b: "Syntax",
+            c: "HTML",
+            d: "Font"
         },
-        correctAnswer: "b"
-    }
+        correctAnswer: "a"
+    },
+    {
+        question: "What is the type of loop that continues through a block of code as long as the specified condition remains TRUE?",
+        answers: {
+            a: "Conditional loop",
+            b: "For loop",
+            c: "Else loop",
+            d: "While loop"
+        },
+        correctAnswer: "d"
+    },
+    {
+        question: "What is a JavaScript element that represents either TRUE or FALSE values?",
+        answers: {
+            a: "Condition",
+            b: "Event",
+            c: "Boolean",
+            d: "RegExp"
+        },
+        correctAnswer: "c"
+    },
+    {
+        question: "What tag is used to define the bottom section (footer) of an HTML document?",
+        answers: {
+            a: "<footer>",
+            b: "<h1> to <h6>",
+            c: "<button>",
+            d: "<td>"
+        },
+        correctAnswer: "a"
+    },
+    {
+        question: "What tag is used to define an unordered list that is bulleted?",
+        answers: {
+            a: "<u>",
+            b: "<li>",
+            c: "<s>",
+            d: "<ul>"
+        },
+        correctAnswer: "d"
+    },
+    {
+        question: "CSS stands for ____ Style Sheets.",
+        answers: {
+            a: "Curious",
+            b: "Concept",
+            c: "Concave",
+            d: "Cascading"
+        },
+        correctAnswer: "d"
+    },
+    {
+        question: "What is the value called that defines colors such as the following: #FFFF00?",
+        answers: {
+            a: "Decimal Value",
+            b: "Color Value",
+            c: "Hex Value",
+            d: "RGB Value"
+        },
+        correctAnswer: "c"
+    },
 ]
 
 
