@@ -3,9 +3,9 @@ var timer = document.getElementById("timer")
 var question = document.getElementById("question")
 var choices = document.getElementById("choices")
 var divPrompt = document.getElementById("divPrompt")
-var nextButton = document.getElementById("nextButton")
 var highscores = document.getElementById("highscores")
 var scoreDiv = document.getElementById("score")
+var end = document.getElementById("end")
 var choiceA = document.getElementById("choiceA")
 var choiceB = document.getElementById("choiceB")
 var choiceC = document.getElementById("choiceC")
@@ -15,6 +15,11 @@ var secondsLeft = 60
 var i = 0
 var score = 0
 var correctAnswer
+var timerInterval
+var initials
+var storeIt
+var numHighscores = 10
+var highscoresStorage = []
 
 var questionList = [
     {
@@ -42,26 +47,24 @@ var questionList = [
 
 
 
-
 startButton.addEventListener("click", startGame)
-
 function startGame(){
     timer.setAttribute("class", "timer")
     scoreDiv.setAttribute("class", "score")
     question.setAttribute("class", "question")
     choices.setAttribute("class", "choices")
     divPrompt.setAttribute("class", "hidden")
-    nextButton.setAttribute("class", "")
     startButton.setAttribute("class", "hidden")
+    end.setAttribute("class", "hidden")
     startTimer()
     showQuestion()
 }
 
 function startTimer(){
-  var timerInterval = setInterval(function() {
+    timerInterval = setInterval(function() {
     timer.textContent = "Timer: " + secondsLeft
     secondsLeft--;
-    if(secondsLeft === 0) {
+    if(secondsLeft === 0 || secondsLeft < 0) {
       clearInterval(timerInterval);
       endGame()
     }
@@ -69,11 +72,24 @@ function startTimer(){
 }
 
 function endGame(){
-
+    timer.setAttribute("class", "timer hidden")
+    question.setAttribute("class", "question hidden")
+    choices.setAttribute("class", "choices hidden")
+    scoreDiv.setAttribute("class", "score hidden")
+    end.setAttribute("class", "")
+    startButton.setAttribute("class", "")
+    clearInterval(timerInterval)
+    secondsLeft = 60
+    i = 0
+    storeIt = window.confirm("Game Over! Your score is: " + score + "\nWould you like to store to your highscore?")
+    if (storeIt){
+        storeHighscore()
+    } else {
+        window.alert("Hit Start to play again!")
+    }
 }
 
 function showQuestion(){
-    correctAnswer = ""
     question.textContent = questionList[i].question
     choiceA.textContent = "a. " + questionList[i].answers.a
     choiceB.textContent = "b. " + questionList[i].answers.b
@@ -126,8 +142,21 @@ function selectedD(){
     scoreDiv.textContent = "Score: " + score
     nextQuestion()
 }
-nextButton.addEventListener("click", nextQuestion)
+
 function nextQuestion(){
-    i++
-    showQuestion()
+    i = i + 1
+    if (i === questionList.length){
+        endGame()
+    } else{
+        showQuestion()
+    }
+}
+
+function storeHighscore(){
+    initials = window.prompt("What are your initials?")
+    newScore = {initials, score}
+    highscoresStorage.push(newScore)
+    highscoresStorage.sort(function(a, b){return b.score - a.score})
+    highscoresStorage.splice(numHighscores)
+    localStorage.setItem("Score", JSON.stringify(highscoresStorage))
 }
