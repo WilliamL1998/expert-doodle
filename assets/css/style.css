@@ -23,6 +23,15 @@ header{
     min-width: 100vw;
 }
 
+.score{
+    align-items: right;
+    justify-content: right;
+    position: fixed;
+    display: flex;
+    min-width: 100vw;
+    top: 2em;
+}
+
 body{
     padding: 0;
     margin: 0;
