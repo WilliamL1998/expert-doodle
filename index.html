@@ -6,24 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Coding Quiz Challenge</title>
     <link rel="stylesheet" href="./assets/css/style.css">
-    <script src="./assets/js/script.js"></script>
 </head>
 <body>
     <Header> Coding Quiz Challenge</Header>
-    <div class="timer">Timer: </div>
-    <button class="highscores">Highscores</button>
-    <section class="quiz-container">
-        <div id="hidden">Question</div>
-        <div id="hidden" class="choices">
-            <button>A</button>
-            <button>B</button>
-            <button>C</button>
-            <button>D</button>
+    <div id="timer" class="timer hidden">Timer: </div>
+    <button class="highscoresButton">Highscores</button>
+    <section class="container">
+        <div id="question" class="hidden">Question</div>
+        <div class="choices hidden" id="choices">
+            <div id="choiceA">A</div>
+            <div id="choiceB">B</div>
+            <div id="choiceC">C</div>
+            <div id="choiceD">D</div>
         </div>
-        <button id="hidden">Next</button>
-        <div id="start">Try to answer these coding-related multiple choice questions.</div>
-        <button id="start">Start</button>
-        <div>Highscores
+        <div id="divPrompt">Try to answer these coding-related multiple choice questions.</div>
+        <button id="nextButton" class="hidden">Next</button>
+        <button id="startButton" class="startButton">Start</button>
+        <div id="highscores" class="hidden">Highscores
             <div>
                 <ul>
                     <li>bla</li>
@@ -31,5 +30,6 @@
             </div>
         </div>
     </section>
+    <script src="./assets/js/script.js"></script>
 </body>
 </html>
