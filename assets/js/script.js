@@ -10,6 +10,7 @@ var choiceA = document.getElementById("choiceA")
 var choiceB = document.getElementById("choiceB")
 var choiceC = document.getElementById("choiceC")
 var choiceD = document.getElementById("choiceD")
+var highscoresButton = document.getElementById("highscoresButton")
 
 var secondsLeft = 600
 var i = 0
@@ -17,10 +18,12 @@ var score = 0
 var correctAnswer
 var timerInterval
 var initials
+var shown = false
 var storeIt
-var numHighscores = 10
 var highscoresStorage = []
-
+if (localStorage.getItem("Highscore List") !== null){
+    highscoresStorage = JSON.parse(localStorage.getItem("Highscore List"))
+}
 var questionList = [
     {
         question: "What tag defines the body of the HTML document, and usually includes all the contents such as the text, hyperlinks, images, tables, lists, and more?",
@@ -169,6 +172,7 @@ function endGame(){
     } else {
         window.alert("Hit Start to play again!")
     }
+    score = 0
 }
 
 // sorts through the question list array and showing the questions and choices
@@ -243,8 +247,75 @@ function storeHighscore(){
     newScore = {initials, score}
     highscoresStorage.push(newScore)
     highscoresStorage.sort(function(a, b){return b.score - a.score})
-    highscoresStorage.splice(numHighscores)
-    localStorage.setItem("Score", JSON.stringify(highscoresStorage))
+    highscoresStorage.splice(10)
+    localStorage.setItem("Highscore List", JSON.stringify(highscoresStorage))
 }
 
-// Unable to figure out how to retrieve local storage highscore with JSON.parse
+// when highscores button is clicked, a function revtrieves the highscore list from local storage, parses it into an array, then lists the top 10 scores with corresponding initials.
+// the button works as an on/off switch, click once, highscores are shown, click again, highscores are hidden, then repeat.
+highscoresButton.addEventListener("click", showHighscore)
+function showHighscore(){
+    if (shown === false){
+    var retrieve = localStorage.getItem("Highscore List")
+    var parsed = JSON.parse(retrieve)
+    console.log(parsed)
+    if (parsed !== null){
+    highscores.textContent = ""
+    if (parsed[0] !== undefined){
+        var score1 = document.createElement("li")
+        score1.textContent = parsed[0].initials + ": " + parsed[0].score
+        highscores.appendChild(score1)
+    }
+    if (parsed[1] !== undefined){
+        var score2 = document.createElement("li")
+        score2.textContent = parsed[1].initials + ": " + parsed[1].score
+        highscores.appendChild(score2)
+    }
+    if (parsed[2] !== undefined){
+        var score3 = document.createElement("li")
+        score3.textContent = parsed[2].initials + ": " + parsed[2].score
+        highscores.appendChild(score3)
+    }
+    if (parsed[3] !== undefined){
+        var score4 = document.createElement("li")
+        score4.textContent = parsed[3].initials + ": " + parsed[3].score
+        highscores.appendChild(score4)
+    }
+    if (parsed[4] !== undefined){
+        var score5 = document.createElement("li")
+        score5.textContent = parsed[4].initials + ": " + parsed[4].score
+        highscores.appendChild(score5)
+    }
+    if (parsed[5] !== undefined){
+        var score6 = document.createElement("li")
+        score6.textContent = parsed[5].initials + ": " + parsed[5].score
+        highscores.appendChild(score6)
+    }
+    if (parsed[6] !== undefined){
+        var score7 = document.createElement("li")
+        score4.textContent = parsed[6].initials + ": " + parsed[6].score
+        highscores.appendChild(score7)
+    }
+    if (parsed[7] !== undefined){
+        var score8 = document.createElement("li")
+        score8.textContent = parsed[7].initials + ": " + parsed[7].score
+        highscores.appendChild(score8)
+    }
+    if (parsed[8] !== undefined){
+        var score9 = document.createElement("li")
+        score9.textContent = parsed[8].initials + ": " + parsed[8].score
+        highscores.appendChild(score9)
+    }
+    if (parsed[9] !== undefined){
+        var score10 = document.createElement("li")
+        score10.textContent = parsed[9].initials + ": " + parsed[9].score
+        highscores.appendChild(score10)
+    }
+}
+    highscores.setAttribute("class", "")
+    shown = true
+} else {
+    highscores.setAttribute("class", "hidden")
+    shown = false
+}
+}
