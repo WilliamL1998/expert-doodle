@@ -1,4 +1,4 @@
-# Module 4 expert-doodle
+# Coding Quiz
 
 ## Description
 
